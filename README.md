@@ -1,8 +1,5 @@
 # Railstash
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/railstash`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -16,13 +13,16 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install railstash
-
 ## Usage
 
-TODO: Write usage instructions here
+*config/initializers/railstash.rb*
+
+```
+Railstash.configure do |c|
+  c.on_log { |data| data.merge!(app_name: 'dummy_app', source: 'dummy.example.com')  }
+  c.on_log_action { |context, data| data['host'] = context.request.host }
+end
+```
 
 ## Development
 
@@ -33,4 +33,3 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/railstash.
-
