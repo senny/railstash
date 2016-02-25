@@ -2,7 +2,7 @@ require 'test_helper'
 
 class LogRequestsTest < ActionDispatch::IntegrationTest
   test "log application requests for logstash" do
-    travel_to "2016-02-24T10:44:01" do
+    travel_to "2016-02-24T09:44:01.000Z" do
       get '/articles', {page: 1, batch: 50}, { "User-Agent" => "Googlebot/2.1 (+http://www.google.com/bot.html)", "Referer" => "http://example.com/"}
     end
 

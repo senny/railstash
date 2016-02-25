@@ -20,7 +20,9 @@ module Railstash
         duration: event.duration,
         view: event.payload[:view_runtime],
         db: event.payload[:db_runtime]
-      }.transform_values { |value| value.to_f.round(2) if value }
+      }.map { |key, value|
+        [key, value.to_f.round(2)] if value
+      }.compact.to_h
     end
   end
 end
