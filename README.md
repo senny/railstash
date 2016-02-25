@@ -1,5 +1,8 @@
 # Railstash
 
+[![Gem Version](https://badge.fury.io/rb/railstash.svg)](http://badge.fury.io/rb/railstash)
+[![Build Status](https://travis-ci.org/senny/railstash.svg?branch=master)](https://travis-ci.org/senny/railstash)
+
 Railstash writes a line based JSON logfile to feed into
 [Logstash](https://www.elastic.co/products/logstash). Request processing
 information is logged automatically and can be augmented further. It's also
