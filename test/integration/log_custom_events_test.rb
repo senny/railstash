@@ -2,7 +2,7 @@ require 'test_helper'
 
 class LogCustomEventsTest < ActionDispatch::IntegrationTest
   test "log custom events (with context)" do
-    travel_to "2016-01-09T11:52:00" do
+    travel_to Time.parse("2016-01-09T10:52:00.000Z") do
       get '/custom_with_context', {status: 'closed'}, { "User-Agent" => "Googlebot/2.1 (+http://www.google.com/bot.html)", "Referer" => "http://example.com/articles"}
     end
 
@@ -32,7 +32,7 @@ class LogCustomEventsTest < ActionDispatch::IntegrationTest
   end
 
   test "log custom events (without context)" do
-    travel_to "2016-01-16T18:29:34" do
+    travel_to Time.parse("2016-01-16T17:29:34.000Z") do
       get '/custom_without_context'
     end
 
