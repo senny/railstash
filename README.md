@@ -1,5 +1,10 @@
 # Railstash
 
+Railstash writes a line based JSON logfile to feed into
+[Logstash](https://www.elastic.co/products/logstash). Request processing
+information is logged automatically and can be augmented further. It's also
+possible to write custom log entries, either with a request context or just raw
+log data.
 
 ## Installation
 
@@ -15,14 +20,21 @@ And then execute:
 
 ## Usage
 
-*config/initializers/railstash.rb*
+Railstash can be configured using a Rails initializer:
 
-```
+*config/initializers/railstash.rb*
+```ruby
 Railstash.configure do |c|
+  c.logger = Logger.new(Rails.root + 'log/railstash.log')
   c.on_log { |data| data.merge!(app_name: 'dummy_app', source: 'dummy.example.com')  }
   c.on_log_action { |context, data| data['host'] = context.request.host }
 end
 ```
+
+Custom events can be logged using `Railstash.log(data)` and
+`Railstash.log_action(context, data)`. The later requires you to pass the
+controller instance as `context`. This will augment the log with additional
+request information.
 
 ## Development
 
